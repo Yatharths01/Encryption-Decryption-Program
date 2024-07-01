@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us!</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        function fb(){window.open('https://www.facebook.com/yatharth.singh.716', '_blank')}
+        function ig(){window.open('https://www.instagram.com/yatharths_03/', '_blank')}
+        function sc(){window.open('https://www.snapchat.com/add/yatharths_03', '_blank')}
+        function lnkd(){window.open('https://in.linkedin.com/in/yatharth-singh-870705269','_blank')}
+        function twt(){window.open('https://twitter.com/Yatharths_03', '_blank')}
+  </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" style="z-index: 1;">
+            <div class="navbar-logo">
+                <a href="#">Your ED tool</a>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./encryption.htm">Encryption</a></li>
+                        <li><a href="./decryption.htm">Decryption</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="./index.html" class="nav-link">Home</a>
+                    <!-- <ul class="dropdown-menu">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Gmail</a></li>
+                    </ul> -->
+                </li>
+            </ul>
+            <div class="navbar-login">
+                <a href="#" class="login">Login</a>
+                <a href="#" class="signup" id="asignup">Sign up</a>
+            </div>
+        </nav>
+        <h1>
+            <h1>Contact!</h1>
+        </h1>
+    </header>
+    <main>
+        <p>Contact us to report a problem, clarify any doubts about out tool, or just find out more.</p>
+        <div class="form">
+            <form action="" name="myForm" onsubmit=" return validateform()">
+                <p><label for="Name">Name*</label><br>
+                    <input type="text" id="Name" name="Name" placeholder="Your Name"><br>
+                </p>
+                <p><label for="Email">Email*</label><br>
+                    <input type="text" id="Email" name="Email" placeholder="Your Email"><br>
+                </p>
+                <p><label for="Message">Message*</label><br>
+                    <textarea id="Message" name="Message" cols="50" rows="5" style="resize: vertical;"
+                        placeholder="Write a message"></textarea><br>
+                </p>
+                <p>
+                    <button class="button" type="submit">
+                        <i class="fa fa-paper-plane"></i> Send Message
+                    </button>
+                </p>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Encryption Decryption Tool. All rights reserved.</p>
+        <i class="fa w3-hover-opacity fa-facebook" onclick="fb()"> </i>
+            <i class="fa w3-hover-opacity fa-instagram" onclick="ig()"></i>
+            <i class="fa w3-hover-opacity fa-snapchat" onclick="sc()"></i>
+            <i class="fa w3-hover-opacity fa-twitter" onclick="twt()"></i>
+            <i class="fa w3-hover-opacity fa-linkedin" onclick="lnkd()"></i>
+    </footer>
+    <!-- <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["Name"].value;
+            if (x == null || x == "") {
+                alert("All star input must be filled out");
+                return false;
+            }
+        }
+    </script> -->
+</body>
+
+</html>
