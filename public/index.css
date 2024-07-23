@@ -1,0 +1,143 @@
+body {
+    /* font-family: Arial, sans-serif; */
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+.navbar-logo{
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+}
+h1{
+    font-family: "Oswald", sans-serif;
+}
+#slct{
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    /* font: 700!important;  */
+}
+main p {
+    padding: 10px 20px 10px 20px;
+}
+#about{
+    font-family: 'PT Mono', monospace;
+}
+
+.upload-area {
+    border: dashed gray;
+    border-radius: 10px;
+    width: 90vw;
+    height: 500px;
+    padding: 0px;
+    text-align: center;
+    background-color: rgb(248, 248, 248);
+    margin: 2vh 5vw 2vh 5vw;
+}
+
+.upload-area div {
+    margin: 100px;
+}
+
+.upload-area h2 {
+    font-size: 1.5em;
+}
+
+/* .upload-area p {
+    margin: 20px 0;
+} */
+
+#file-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#file-button:hover {
+    background-color: #0056b3;
+}
+
+/* #optionsContainer{
+     margin: 20px; 
+} */
+.hidden {
+    /* display: none; */
+    margin: 5vh 5vw 5vh 5vw;
+}
+
+/* .hidden-box { */
+    /* display: none; */
+/* } */
+
+button {
+    border-radius: 6px;
+    border: groove;
+    padding: 10px 20px;
+}
+
+#morefile {
+    padding: 10px;
+    margin: 10px;
+}
+
+#operation-portal {
+    padding: 10px;
+    margin: 10px;
+}
+
+/* .form1 label{
+    position: relative;
+    top: 10px;
+    /* left: 10px; 
+} */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    /* cursor: pointer; */
+    font-size: 15px;
+    /* -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; */
+}
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+.container input:checked~.checkmark {
+    background-color: red;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.container input:checked~.checkmark:after {
+    display: block;
+}
+.container .checkmark:after {
+    top: 6.25px;
+    left: 6.25px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: whitesmoke;
+}

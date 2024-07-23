@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="enc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Oswald:wght@200..700&family=PT+Mono&display=swap" rel="stylesheet">
+    <script>
+        function fb(){window.open('https://www.facebook.com', '_blank')}
+        function ig(){window.open('https://www.instagram.com', '_blank')}
+        function sc(){window.open('https://www.snapchat.com', '_blank')}
+        function lnkd(){window.open('https://in.linkedin.com/in/yatharth-singh-870705269','_blank')}
+        function twt(){window.open('https://twitter.com', '_blank')}
+  </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" style="z-index: 1;">
+            <div class="navbar-logo">
+                <a href="./index.html">ED Platform</a>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="./index.html" class="nav-link">Home</a>
+                    <!-- <ul class="dropdown-menu">
+                        <li><a href="#">Encryption</a></li>
+                        <li><a href="#">Decryption</a></li>
+                    </ul> -->
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="./contact.htm" class="nav-link">Contact us</a>
+                    <!-- <ul class="dropdown-menu">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Gmail</a></li>
+                    </ul> -->
+                </li>
+            </ul>
+            <div class="navbar-login">
+                <a href="#" class="login">Login</a>
+                <a href="#" class="signup" id="asignup">Sign up</a>
+            </div>
+        </nav>
+        <h1>
+            <h1>Encryption</h1>
+        </h1>
+    </header>
+    <main>
+        <!-- <div class="result">
+            <div id="morefile">
+                <form id="fileForm" enctype="multipart/form-data" method="post" action="/upload">
+                    <input type="file" id="filesInput" name="files" multiple required>
+                    <button type="submit" class="button1"><i class="fa fa-file"></i> Add files</button>
+                </form> -->
+        <div class="result">
+            <div id="morefile">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <button type="button" class="button1" id="addFilesBtn">
+                        <i class="fa fa-file"></i>
+                        Add files
+                    </button>
+                    <!-- <input type="file" id="fileInput" name="files" multiple hidden> -->
+                    <input type="file" id="fileInput" name="files" multiple hidden>
+                </form>
+            </div>
+        </div>
+            <!-- </div>
+        </div> -->
+        <div class="opProcess">
+            <div class="dropdownOp">
+                <label for="operationSelect">Please select operation:</label><br>
+                <select id="operationSelect">
+                    <option value="" selected disabled hidden>Select an option</option>
+                    <option value="AES">AES</option>
+                    <option value="RSA">RSA</option>
+                    <!-- <option value="des">Triple DES</option> -->
+                    <!-- <option value="blowfish">BlowFish</option> -->
+                    <!-- <option value="twofish">TwoFish</option> -->
+                </select>
+                <button type="button" onclick="chosenOp()" id="button1">Submit</button>
+            </div>
+            <!-- <form id="keyForm" enctype="multipart/form-data" method="post" action="/encrypt"> -->
+            <div id="keyForm">
+                <input type="hidden" name="operation" value="1">
+                <label for="keyType">Select key type:</label><br>
+                <select id="keyType" name="keyType" required>
+                    <option value="" selected disabled hidden>Select an option</option>
+                    <option value="1">16 Character Key</option>
+                    <option value="0">32 Character Hex Key</option>
+                </select>
+                <br><br>
+                <label for="charKey">Enter Character Key:</label><br>
+                <input type="text" id="charKey" autocomplete="off" name="charKey" required>
+                <br><br>
+                <button type="submit" id="encryptBtn">Encrypt</button>
+            </div>
+            <!-- <div class="spinner" id="spinner">
+                 <p>loading....</p>
+            </div> -->
+        </div>
+        <div id="result">
+            
+            <h2>Your encrypted files..</h2>
+            <div id="result-name"></div>
+            <a id="downloadLink" href="" download>
+            <button id="button2"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button></a>
+        </div>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Encryption Decryption Tool. All rights reserved.</p>
+        <i class="fa w3-hover-opacity fa-facebook" onclick="fb()"> </i>
+        <i class="fa w3-hover-opacity fa-instagram" onclick="ig()"></i>
+        <i class="fa w3-hover-opacity fa-snapchat" onclick="sc()"></i>
+        <i class="fa w3-hover-opacity fa-twitter" onclick="twt()"></i>
+        <i class="fa w3-hover-opacity fa-linkedin" onclick="lnkd()"></i>
+    </footer>
+    <script>
+        function chosenOp() {
+            const selectEl = document.getElementById('operationSelect');
+            const selectVal = selectEl.value;
+            if (selectVal === 'AES') {
+                document.getElementById('keyForm').style.display = 'block';
+             }
+            else if (selectVal === 'RSA') { 
+                document.getElementById('keyForm').style.display = 'none';
+                alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
+            }
+            else if (selectVal === 'des') {
+                alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
+            }
+            else if (selectVal === 'blowfish') {
+                alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
+            }
+            else if (selectVal === 'twofish') {
+                alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
+            }
+            else {
+                alert("please select a value!!");
+            }
+        }
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const spinner = document.getElementById('spinner');
+        //     const button = document.getElementById('button1');
+        //     button.addEventListener('click', showSpinner);
+
+        //     function showSpinner() {
+        //         spinner.style.display = 'block';
+        //         setTimeout(() => {
+        //             spinner.style.display = 'none';
+        //         }, 1000);
+        //     }
+        // });
+
+        document.getElementById('addFilesBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', () => {
+            const fileInput = document.getElementById('fileInput');
+            const uploadForm = document.getElementById('uploadForm');
+            const formData = new FormData(uploadForm);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.error) {
+                      alert('File upload failed: ' + data.error);
+                      return;
+                  }
+                  alert('File uploaded successfully.');
+                  console.log('Files uploaded successfully:', fileInput.files);
+              }).catch(error => {
+                  console.error('Error:', error);
+                  alert('File upload failed.');
+              });
+        });
+
+        document.getElementById('encryptBtn').addEventListener('click', async() => {
+            const keyType = document.getElementById('keyType').value;
+            const charKey = document.getElementById('charKey').value;
+
+            if (!keyType || !charKey) {
+                alert('Please provide all required inputs.');
+                return;
+            }
+
+            const requestData = {
+                keyType: keyType,
+                charKey: charKey
+            };
+
+            console.log('Sending encryption request with data:', requestData);
+
+            try {
+                const response = await fetch('/encrypt',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                alert('Encryption Started Succesfully! (Download option will appear soon)')
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = `/download/${data.encryptedFile}`;
+                // const data = await response.json();
+                // console.log('Data Value', data);
+                // console.log('Encryption successful:', data);
+                // const downloadBtn = document.getElementById('downloadBtn');
+                // downloadBtn.style.display = 'block';
+                // document.getElementById('result-name').innerText = data.encryptedFile; 
+
+            } catch (error) {
+                // console.log(`Error: ${error} and ${JSON.stringify(error)}`);
+                // alert('Encryption failed');  
+            }
+
+            // fetch('/encrypt', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(requestData)
+            // }).then(response => response.json())
+            //   .then(data => {
+            //     console.log("data value", data)
+            //       if (data.error) {
+            //           alert('Encryption failed: ' + data.error);
+            //           return;
+            //       }
+            //       console.log('Encryption successful:', data);
+            //       const downloadLink = document.getElementById('downloadLink');
+            //       const downloadBtn = document.getElementById('downloadBtn');
+            //       downloadLink.href = `/download/${data.encryptedFile}`;
+            //       downloadBtn.style.display = 'block';
+            //       document.getElementById('result-name').innerText = data.encryptedFile;
+            //   }).catch(error => {
+            //       console.log('Error:', JSON.stringify(error));
+            //       alert('Encryption failed New.');
+            //   });
+        });
+    </script>
+</body>
+
+</html>

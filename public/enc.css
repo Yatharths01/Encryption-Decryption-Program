@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar-logo{
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+}
+h1{
+    font-family: "Oswald", sans-serif;
+    font-size: 40px
+}
+.result{
+    margin: 40px;
+}
+button {
+    border-radius: 6px;
+    border: groove; 
+    padding: 10px 20px;
+}
+button{
+    display: block;
+    margin: 20px 0px;
+}
+button:hover{
+    border: solid red;
+}
+.dropdownOp{
+    /* position: relative; */
+    /* left: 30px; */
+    margin: 40px;
+}
+select{
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    /* background-color: antiquewhite; */
+    border: 2px solid red;
+    border-radius: 10px;
+    text-align: center;
+}
+#keyForm{
+    display: none;    
+    margin: 40px;
+}
+#keyForm input{
+    width: 300px;
+    height: 30px;
+    /* text-align: center; */
+    font-size: medium;
+    border: 2px solid red;
+    border-radius: 8px;
+}
+.spinner{
+    display: none;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#charKey{
+    font-family: 'PT Mono', monospace;
+}
+#result{
+ margin:40px;
+}
+#result a{
+    text-decoration: none;
+}
+h2{
+    font-family: 'PT Mono', monospace;
+    font-size: large;
+}
