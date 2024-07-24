@@ -9,15 +9,22 @@
     <link rel="stylesheet" href="enc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Oswald:wght@200..700&family=PT+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Oswald:wght@200..700&family=PT+Mono&display=swap"
+        rel="stylesheet">
     <script>
-        function fb(){window.open('https://www.facebook.com', '_blank')}
-        function ig(){window.open('https://www.instagram.com', '_blank')}
-        function sc(){window.open('https://www.snapchat.com', '_blank')}
-        function lnkd(){window.open('https://in.linkedin.com/in/yatharth-singh-870705269','_blank')}
-        function twt(){window.open('https://twitter.com', '_blank')}
-  </script>
+        function fb() { window.open('https://www.facebook.com', '_blank') }
+        function ig() { window.open('https://www.instagram.com', '_blank') }
+        function sc() { window.open('https://www.snapchat.com', '_blank') }
+        function lnkd() { window.open('https://in.linkedin.com/in/yatharth-singh-870705269', '_blank') }
+        function twt() { window.open('https://twitter.com', '_blank') }
+    </script>
+    <style>
+        #download-encrypted-btn{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -70,7 +77,7 @@
                 </form>
             </div>
         </div>
-            <!-- </div>
+        <!-- </div>
         </div> -->
         <div class="opProcess">
             <div class="dropdownOp">
@@ -105,11 +112,13 @@
             </div> -->
         </div>
         <div id="result">
-            
+
             <h2>Your encrypted files..</h2>
             <div id="result-name"></div>
-            <a id="downloadLink" href="" download>
-            <button id="button2"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button></a>
+            <a id="downloadLink" href='/download-encrypted' download>
+            <!-- <button id="download-encrypted-btn" onclick="downloadEncrypted()"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button> -->
+            <button id="download-encrypted-btn"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button>
+            </a>
         </div>
 
     </main>
@@ -127,8 +136,8 @@
             const selectVal = selectEl.value;
             if (selectVal === 'AES') {
                 document.getElementById('keyForm').style.display = 'block';
-             }
-            else if (selectVal === 'RSA') { 
+            }
+            else if (selectVal === 'RSA') {
                 document.getElementById('keyForm').style.display = 'none';
                 alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
             }
@@ -170,23 +179,23 @@
                 method: 'POST',
                 body: formData
             }).then(response => response.json())
-              .then(data => {
-                  if (data.error) {
-                      alert('File upload failed: ' + data.error);
-                      return;
-                  }
-                  alert('File uploaded successfully.');
-                  console.log('Files uploaded successfully:', fileInput.files);
-              }).catch(error => {
-                  console.error('Error:', error);
-                  alert('File upload failed.');
-              });
+                .then(data => {
+                    if (data.error) {
+                        alert('File upload failed: ' + data.error);
+                        return;
+                    }
+                    alert('File uploaded successfully.');
+                    console.log('Files uploaded successfully:', fileInput.files);
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('File upload failed.');
+                });
         });
 
-        document.getElementById('encryptBtn').addEventListener('click', async() => {
+        document.getElementById('encryptBtn').addEventListener('click', async () => {
             const keyType = document.getElementById('keyType').value;
             const charKey = document.getElementById('charKey').value;
-
+            alert('Encryption has started! (wait for the alert to download)');
             if (!keyType || !charKey) {
                 alert('Please provide all required inputs.');
                 return;
@@ -200,52 +209,23 @@
             console.log('Sending encryption request with data:', requestData);
 
             try {
-                const response = await fetch('/encrypt',{
+                const response = await fetch('/encrypt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(requestData)
                 });
-                alert('Encryption Started Succesfully! (Download option will appear soon)')
-                const downloadLink = document.getElementById('downloadLink');
-                downloadLink.href = `/download/${data.encryptedFile}`;
-                // const data = await response.json();
-                // console.log('Data Value', data);
-                // console.log('Encryption successful:', data);
-                // const downloadBtn = document.getElementById('downloadBtn');
-                // downloadBtn.style.display = 'block';
-                // document.getElementById('result-name').innerText = data.encryptedFile; 
-
+                // const downloadLink = document.getElementById('downloadLink');
+                // downloadLink.href = `/download/${data.encryptedFile}`;
             } catch (error) {
                 // console.log(`Error: ${error} and ${JSON.stringify(error)}`);
-                // alert('Encryption failed');  
+                alert('Encryption failed');  
             }
-
-            // fetch('/encrypt', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(requestData)
-            // }).then(response => response.json())
-            //   .then(data => {
-            //     console.log("data value", data)
-            //       if (data.error) {
-            //           alert('Encryption failed: ' + data.error);
-            //           return;
-            //       }
-            //       console.log('Encryption successful:', data);
-            //       const downloadLink = document.getElementById('downloadLink');
-            //       const downloadBtn = document.getElementById('downloadBtn');
-            //       downloadLink.href = `/download/${data.encryptedFile}`;
-            //       downloadBtn.style.display = 'block';
-            //       document.getElementById('result-name').innerText = data.encryptedFile;
-            //   }).catch(error => {
-            //       console.log('Error:', JSON.stringify(error));
-            //       alert('Encryption failed New.');
-            //   });
+            alert("File encryption successful, You can now download your file");
+            document.getElementById('download-encrypted-btn').style.display = 'block';
         });
+
     </script>
 </body>
 

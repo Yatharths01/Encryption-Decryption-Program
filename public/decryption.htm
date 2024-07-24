@@ -9,15 +9,22 @@
     <link rel="stylesheet" href="enc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Oswald:wght@200..700&family=PT+Mono&display=swap" rel="stylesheet">
-<script>
-        function fb(){window.open('https://www.facebook.com', '_blank')}
-        function ig(){window.open('https://www.instagram.com', '_blank')}
-        function sc(){window.open('https://www.snapchat.com', '_blank')}
-        function lnkd(){window.open('https://in.linkedin.com/in/yatharth-singh-870705269','_blank')}
-        function twt(){window.open('https://twitter.com', '_blank')}
-  </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Oswald:wght@200..700&family=PT+Mono&display=swap"
+        rel="stylesheet">
+    <script>
+        function fb() { window.open('https://www.facebook.com', '_blank') }
+        function ig() { window.open('https://www.instagram.com', '_blank') }
+        function sc() { window.open('https://www.snapchat.com', '_blank') }
+        function lnkd() { window.open('https://in.linkedin.com/in/yatharth-singh-870705269', '_blank') }
+        function twt() { window.open('https://twitter.com', '_blank') }
+    </script>
+    <style>
+        #download-decrypted-btn{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -60,7 +67,7 @@
                         Add files
                     </button>
                     <input type="file" id="fileInput" name="files" multiple hidden>
-                </form>    
+                </form>
             </div>
         </div>
         <div class="opProcess">
@@ -77,7 +84,7 @@
                 <button type="button" onclick="chosenOp()" id="button1">Submit</button>
             </div>
             <!-- <div class="spinner" id="spinner"> -->
-                <!-- <p>loading....</p> -->
+            <!-- <p>loading....</p> -->
             <!-- </div> -->
             <div id="keyForm">
                 <input type="hidden" name="operation" value="1">
@@ -98,8 +105,10 @@
 
             <h2>Your decrypted files..</h2>
             <div id="result-name"></div>
-            <a href="" id="downloadLink" download>
-            <button id="button2" onclick="downloadFile()"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button></a>
+            <a id="downloadLink" href='/download-decrypted' download>
+            <!-- <button id="download-decrypted-btn" onclick="downloadDecrypted()"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button> -->
+                <button id="download-decrypted-btn"><i class='fa'>&#xf0ed;</i> Download Encrypted files</button>
+            </a>
         </div>
 
     </main>
@@ -117,11 +126,11 @@
             const selectVal = selectEl.value;
             if (selectVal === 'AES') {
                 document.getElementById('keyForm').style.display = 'block';
-             }
+            }
             else if (selectVal === 'RSA') {
                 document.getElementById('keyForm').style.display = 'none';
                 alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
-             }
+            }
             else if (selectVal === 'des') {
                 alert(`Selected Encryption Type ( ${selectVal} ) is currently unavailable`);
             }
@@ -147,7 +156,7 @@
         //         }, 1000);
         //     }
         // });
-        document.getElementById('addFilesBtn').addEventListener('click', ()=>{
+        document.getElementById('addFilesBtn').addEventListener('click', () => {
             document.getElementById('fileInput').click();
         });
         document.getElementById('fileInput').addEventListener('change', () => {
@@ -158,20 +167,20 @@
                 method: 'POST',
                 body: formData
             }).then(response => response.json())
-              .then(data => {
-                  if (data.error) {
-                      alert('File upload failed: ' + data.error);
-                      return;
-                  }
-                  alert('File uploaded successfully.');
-                  console.log('Files uploaded successfully:', fileInput.files);
-              }).catch(error => {
-                  console.error('Error:', error);
-                  alert('File upload failed.');
-              });
+                .then(data => {
+                    if (data.error) {
+                        alert('File upload failed: ' + data.error);
+                        return;
+                    }
+                    alert('File uploaded successfully.');
+                    console.log('Files uploaded successfully:', fileInput.files);
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('File upload failed.');
+                });
         });
 
-        document.getElementById('decryptBtn').addEventListener('click', async() => {
+        document.getElementById('decryptBtn').addEventListener('click', async () => {
             const keyType = document.getElementById('keyType').value;
             const charKey = document.getElementById('charKey').value;
 
@@ -188,7 +197,7 @@
             console.log('Sending decryption request with data:', requestData);
 
             try {
-                const response = await fetch('/decrypt',{
+                const response = await fetch('/decrypt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -198,22 +207,15 @@
                 const data = await response.json();
                 console.log('Data Value', data);
                 console.log('Decryption successful:', data);
-                alert('Decryption Started Succesfully! (Download option will appear soon)')
-                // const downloadLink = document.getElementById('downloadLink');
-                // const downloadBtn = document.getElementById('downloadBtn');
-                // downloadLink.href = `/uploads_output/${data.encryptedFile}`;
-                // downloadBtn.style.display = 'block';
-                // document.getElementById('result-name').innerText = data.encryptedFile;  
+                alert('Decryption Started Succesfully! (Download option will appear soon)') 
             } catch (error) {
-            //     console.log(`Error: ${error} and ${JSON.stringify(error)}`);
-            //     alert('Decryption failed Await');
-             }
+                //     console.log(`Error: ${error} and ${JSON.stringify(error)}`);
+                    // alert('Decryption failed Await');
+                    console.log('Decryption failed');
+            }
+            alert("File decryption successful, You can now download your file");
+            document.getElementById('download-decrypted-btn').style.display = 'block';
         });
-        function downloadFile() {
-            // Open a new window to trigger the download
-            window.location.href = '/download';
-        }
-
     </script>
 </body>
 
